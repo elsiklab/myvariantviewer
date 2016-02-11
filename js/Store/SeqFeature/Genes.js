@@ -37,6 +37,8 @@ return declare( SeqFeatureStore, {
                                    start: f.genomic_pos_hg19.start,
                                    end: f.genomic_pos_hg19.end,
                                    strand: f.genomic_pos_hg19.strand,
+                                   name: f.symbol,
+                                   description: f.name,
                                    type: 'gene',
                                    subfeatures: []
                                }
