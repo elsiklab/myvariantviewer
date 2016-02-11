@@ -19,3 +19,5 @@ Example configuration to fetch genes and variants from hg19:
          "type" : "CanvasFeatures",
          "label" : "MyGene.info"
       }
+
+![](img/out.png)
