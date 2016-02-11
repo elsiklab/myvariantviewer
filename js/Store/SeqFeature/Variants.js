@@ -25,7 +25,11 @@ return declare( SeqFeatureStore, {
 
     getFeatures: function( query, featureCallback, finishCallback, errorCallback ) {
         var thisB = this;
-        request( this.config.urlTemplate+query.ref+':'+query.start+'-'+query.end,
+        var url = this.resolveUrl(
+            this.config.urlTemplate, { refseq: query.ref, start: query.start, end: query.end }
+        );
+
+        request( url,
                  { handleAs: 'json' }
                ).then(
                    function( featuredata ) {
