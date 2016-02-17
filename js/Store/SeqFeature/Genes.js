@@ -43,6 +43,21 @@ return declare( SeqFeatureStore, {
                                    subfeatures: []
                                }
                            });
+                           if( !f.exons_hg19 ) {
+                               var feature = new SimpleFeature({
+                                   id: f._id+'-transcript',
+                                   data: {
+                                       start: f.genomic_pos_hg19.start,
+                                       end: f.genomic_pos_hg19.end,
+                                       strand: f.genomic_pos_hg19.strand,
+                                       type: 'mRNA',
+                                       name: f.name+'-transcript',
+                                       subfeatures: []
+                                   },
+                                   parent: superfeat
+                               });
+                               superfeat.data.subfeatures.push(feature);
+                           }
                            array.forEach( Object.keys(f.exons_hg19||{}), function(key) {
                                var t = f.exons_hg19[key];
                                //console.log('transcript',t);
@@ -51,7 +66,7 @@ return declare( SeqFeatureStore, {
                                        data: {
                                            start: t.txstart,
                                            end: t.txend,
-                                           strand: f.genomic_pos.strand,
+                                           strand: f.genomic_pos_hg19.strand,
                                            type: 'mRNA',
                                            name: key,
                                            subfeatures: []
@@ -66,7 +81,7 @@ return declare( SeqFeatureStore, {
                                        data: {
                                            start: e[0],
                                            end: e[1],
-                                           strand: f.genomic_pos.strand,
+                                           strand: f.genomic_pos_hg19.strand,
                                            type: 'exon'
                                        },
                                        parent: feature
