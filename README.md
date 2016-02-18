@@ -21,3 +21,28 @@ Example configuration to fetch genes and variants from hg19:
       }
 
 ![](img/out.png)
+
+Slightly more sophisticated query for specific attributes from MyVariant.info
+
+
+    {
+       "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+       "urlTemplate" : "http://myvariant.info/v1/query?q={refseq}:{start}-{end}&fields=dbnsfp.exac",
+       "type" : "CanvasFeatures",
+       "label" : "MyVariant.info ExAC",
+       "glyph": "MyVariantViewer/View/FeatureGlyph/ExAC"
+    },
+    {
+       "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+       "urlTemplate" : "http://myvariant.info/v1/query?q={refseq}:{start}-{end}&fields=dbnsfp.1000gp3",
+       "type" : "CanvasFeatures",
+       "label" : "MyVariant.info 1000 genomes",
+       "glyph": "MyVariantViewer/View/FeatureGlyph/1000gp3"
+    },
+    {
+       "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+       "urlTemplate" : "http://myvariant.info/v1/query?q={refseq}:{start}-{end}&fields=dbsnp.alleles",
+       "type" : "CanvasFeatures",
+       "label" : "MyVariant.info dbSNP",
+       "glyph": "MyVariantViewer/View/FeatureGlyph/dbSNP"
+    }

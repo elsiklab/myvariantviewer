@@ -34,11 +34,12 @@ return declare( SeqFeatureStore, {
                ).then(
                    function( featuredata ) {
                        array.forEach( featuredata.hits, function(f) {
+                           var start = +f._id.match(/chr.*:g.(.*).>./)[1]+1;
                            var feature = new SimpleFeature({
                                    id: f._id,
                                    data: {
-                                       start: f.cadd.pos,
-                                       end: f.cadd.pos+1,
+                                       start: start,
+                                       end: start+1,
                                        id: f._id
                                    }
                                });
