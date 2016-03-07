@@ -45,6 +45,7 @@ return declare( SeqFeatureStore, {
                                });
 
                            var process=function(str) {
+                               if(!f[str]) return;
                                feature.data[str+"_attrs"]={};
                                var valkeys=array.filter( dojof.keys(f[str]), function(key) {
                                    return typeof f[str][key]!='object';
@@ -61,14 +62,20 @@ return declare( SeqFeatureStore, {
                                    feature.data[str+"_"+key]=f[str][key];
                                });
                            }
-                           process("cadd");
-                           process("dbnsfp");
-                           process("dbsnp");
-                           process("evs");
-                           process("exac");
-                           process("mutdb");
-                           process("cosmic");
-
+                           process('cadd');
+                           process('cosmic');
+                           process('dbnsfp');
+                           process('dbsnp');
+                           process('evs');
+                           process('exac');
+                           process('mutdb');
+                           process('wellderly');
+                           process('snpedia');
+                           /*process('grasp');*/
+                           process('gwascatalog');
+                           process('docm');
+                           process('emvclass');
+                           process('clinvar');
 
                            featureCallback( feature );
                        });
