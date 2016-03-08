@@ -58,40 +58,52 @@ return declare( SeqFeatureStore, {
                                });
 
                            var process=function(str,data,plus) {
-                                if(str=="snpeff"){
-                                   if(!data) return;
-                                   if(lang.isArray(data['ann'])) {
-                                       array.forEach(data['ann'],function(fm,i) { process(str+'_'+i,fm,i); });
-                                       return;
-                                   }
-                                   delete data['ann'].cds; // sub-sub-objects, not super informative
-                                   delete data['ann'].cdna;
-                                   delete data['ann'].protein;
-                               }
                                if(!data) return;
-                               
-                               feature.data[str+"_attrs"+(plus||"")]={};
-                               var valkeys=array.filter( dojof.keys(data), function(key) {
-                                   return typeof data[key]!='object';
-                               });
 
-                               var objkeys=array.filter( dojof.keys(data), function(key) {
-                                   return typeof data[key]=='object' && key!='gene';
-                               });
+                               if(str.match(/snpeff/)){
+                                  if(lang.isArray(data['ann'])) {
+                                      array.forEach(data['ann'],function(fm,i) { process(str+'_'+i,fm,i); });
+                                      return;
+                                  }
+                                  else if(data['ann']) {
+                                      delete data['ann'].cds;
+                                      delete data['ann'].cdna;
+                                      delete data['ann'].protein;
+                                  }
+                                  else {
+                                      delete data.cds; // sub-sub-objects, not super informative
+                                      delete data.cdna;
+                                      delete data.protein;
+                                  }
+                              }
+                              if(str.match(/cadd/)) {
+                                  if(data['encode']) {
+                                      process(str+'_encode',data['encode']);
+                                  }
+                              }
+                              
+                              feature.data[str+"_attrs"+(plus||"")]={};
+                              var valkeys=array.filter( dojof.keys(data), function(key) {
+                                  return typeof data[key]!='object';
+                              });
 
-                               
+                              var objkeys=array.filter( dojof.keys(data), function(key) {
+                                  return typeof data[key]=='object' && key!='gene' && key!='encode';
+                              });
 
-                               array.forEach( valkeys, function(key) {
-                                   feature.data[str+"_attrs"+(plus||"")][key]=data[key];
-                               });
-                               array.forEach( objkeys, function(key) {
-                                   feature.data[str+"_"+key+(plus||"")]=data[key];
-                               });
+                              
+
+                              array.forEach( valkeys, function(key) {
+                                  feature.data[str+"_attrs"+(plus||"")][key]=data[key];
+                              });
+                              array.forEach( objkeys, function(key) {
+                                  feature.data[str+"_"+key+(plus||"")]=data[key];
+                              });
                            }
                            
                            process('cadd',f['cadd']);
-                           process('cosmic',f['cosmic']);
-                           process('dbnsfp',f['dbnsfp']);
+                           //process('cosmic',f['cosmic']);
+                           //process('dbnsfp',f['dbnsfp']);
                            process('dbsnp',f['dbsnp']);
                            process('evs',f['evs']);
                            process('exac',f['exac']);
