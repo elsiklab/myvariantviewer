@@ -71,7 +71,6 @@ return declare( SeqFeatureStore, {
                            request(url, {handleAs: 'json'}).then(function(res) {
                                var feats = res.hits||[];
                                array.forEach(feats, function(f) {
-                                   console.log(f.clinvar.rcv,f.clinvar.hgvs,f.clinvar.omim);
                                    var feat = thisB.processFeat(f);
                                    interval.features.push(feat);
                                    featureCallback(feat);
@@ -173,7 +172,7 @@ return declare( SeqFeatureStore, {
         process('snpeff',f['snpeff']);
         process('vcf',f['vcf']);
         process('grasp',f['grasp']);
-        process('gwascatalog',f['gwascatalog']);
+        process('gwassnps',f['gwassnps']);
         process('docm',f['docm']);
         process('emvclass',f['emvclass']);
         process('clinvar',f['clinvar']);
