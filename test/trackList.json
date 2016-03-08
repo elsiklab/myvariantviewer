@@ -1,23 +1,133 @@
 {
-"tracks":[
-  {
-     "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes",
-     "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000",
-     "subParts" : [
-        "exon"
-     ],
-     "type" : "CanvasFeatures",
-     "hg19": true,
-     "label" : "MyGene.info"
-  },
-  {
-     "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-     "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&fetch_all=true&email=colin.diesh@gmail.com",
-     "baseUrl": "http://myvariant.info/v1/",
-     "type" : "CanvasFeatures",
-     "label" : "MyVariant.info",
-     "style": {"featureScale": 0.5}
-  }
+    "tracks":[
+      {
+         "hg19" : true,
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes",
+         "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
+         "subParts" : [
+            "exon"
+         ],
+         "type" : "CanvasFeatures",
+         "label" : "MyGene.info"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "#665"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:evs&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=evs",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info evs",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "{colorfun}",
+            "featureScale" : 0.5
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&fetch_all=true&email=colin.diesh@gmail.com",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "magenta"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:gwascatalog&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=gwascatalog",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info gwascatalog",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "#aae"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cosmic&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=cosmic",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info cosmic",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "#5fa"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:mutdb&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=mutdb",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info mutdb",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "#a84"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emvclass&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=emvclass",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info emvclass",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "#3f9"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:docm&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=docm",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info docm",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "#b44"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpedia&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=snpedia",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info snpedia",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      },
+      {
+         "displayMode" : "collapse",
+         "optimizer" : true,
+         "style" : {
+            "color" : "{colorfun}"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:clinvar&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=clinvar",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info clinvar",
+         "glyph" : "JBrowse/View/FeatureGlyph/Diamond"
+      }
   ],
   "plugins": ["MyVariantViewer"],
   "highResolutionMode":2
