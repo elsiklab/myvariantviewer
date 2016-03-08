@@ -13,14 +13,15 @@ Fetch genes and variants from hg19:
             "exon"
          ],
          "type" : "CanvasFeatures",
-         "label" : "MyGene.info"
+         "label" : "MyGene.info",
+         "hg19" : true
       },
       {
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&fetch_all=true&email=colin.diesh@gmail.com",
          "baseUrl": "http://myvariant.info/v1/",
          "type" : "CanvasFeatures",
-         "label" : "MyVariant.info",
+         "label" : "MyVariant.info"
       }
 
 Note: we now use a "scroll query" so fetch_all should be supplied in the URL template
