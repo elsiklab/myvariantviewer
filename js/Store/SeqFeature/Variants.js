@@ -71,6 +71,7 @@ return declare( SeqFeatureStore, {
                            request(url, {handleAs: 'json'}).then(function(res) {
                                var feats = res.hits||[];
                                array.forEach(feats, function(f) {
+                                   console.log(f);
                                    var feat = thisB.processFeat(f);
                                    interval.features.push(feat);
                                    featureCallback(feat);
@@ -126,6 +127,12 @@ return declare( SeqFeatureStore, {
                    process(str+'_encode',data['encode']);
                }
                delete data['encode'];
+           }
+           if(str.match(/clinvar/)) {
+               process(str+'_hgvs', data['hgvs']);
+               delete data['hgvs'];
+               process(str+'_rcv', data['rcv']);
+               delete data['rcv'];
            }
            if(str.match(/grasp/)) {
                if(lang.isArray(data['publication'])) {

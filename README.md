@@ -26,25 +26,17 @@ Fetch genes and variants from hg19:
 
 Note: we now use a "scroll query" for variants, so fetch_all should be supplied in the URL template, and the baseUrl should be separate from urlTemplate in the Variants track
 
-## Example color config
+## Only query from a specific data source
 
-To color variants according to whether they appear in some given database, for example, you can try the following function:
+Example to only query variants from clinvar (combining _exists_ in clinvar with fields=clinvar
 
-
-```
-colorfun=function(feature) {
-    if(feature.get('cosmic_attrs')) return 'red';
-    if(feature.get('dbsnp_attrs')) return 'green';
-    else if(feature.get('snpeff_attrs')) return 'goldenrod';
-    else if(feature.get('snpeff_0_attrs')) return 'orange'; /* happens with there are multiple transcripts that snpeff predicts on */
-    else if(feature.get('clinvar_attrs')) return 'blue';
-    else if(feature.get('wellderly_attrs')) return 'purple';
-    else return 'lightgreen';
-  }
-```
-
-If, for example, a variant exists in COSMIC, you know it's trouble!
-
+      {
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "baseUrl" : "http://myvariant.info/v1/",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:clinvar&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=clinvar",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info clinvar"
+      }
 
 ## Screenshots
 
