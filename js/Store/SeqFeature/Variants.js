@@ -22,6 +22,7 @@ var dojof = Util.dojof;
 return declare( SeqFeatureStore, {
 
     constructor: function( args ) {
+        this.intervals=[];
         // perform any steps to initialize your new store.  
     },
     getFeatures: function( query, featureCallback, finishCallback, errorCallback ) {
@@ -29,6 +30,33 @@ return declare( SeqFeatureStore, {
         var url = this.resolveUrl(
             this.config.urlTemplate, { refseq: query.ref, start: query.start, end: query.end }
         );
+
+        if(this.config.optimizer) {
+            var done=false;
+            var featureFound=0;
+
+            array.forEach(this.intervals, function(interval) {
+                if(query.start >= interval.start && query.end <= interval.end) {
+                    array.forEach(interval.features, function(feature) {
+                        if(!(feature.get('start')>query.end&&feature.get('end')<query.start)) {
+                            featureFound++;
+                            featureCallback(feature);
+                        }
+                    });
+                    if(interval.features) {
+                        done=true;
+                        return;
+                    }
+                }
+            });
+
+            if(done) {
+                finishCallback();
+                return;
+            }
+        }
+
+        var interval = { start: query.start, end: query.end, ref: query.ref, features: [] };
 
         request( url,
                  { handleAs: 'json' }
@@ -40,9 +68,12 @@ return declare( SeqFeatureStore, {
                            );
                            request(url, {handleAs: 'json'}).then(function(features2) {
                                array.forEach(features2.hits, function(f) {
-                                   featureCallback( thisB.processFeat(f) );
+                                   var feat = thisB.processFeat(f);
+                                   interval.features.push(feat);
+                                   featureCallback(feat);
                                });
                                if(features2.hits.length<1000) {
+                                   thisB.intervals.push(interval);
                                    finishCallback();
                                }
                                else {
