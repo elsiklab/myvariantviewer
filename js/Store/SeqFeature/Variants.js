@@ -1,6 +1,7 @@
 define([
             'dojo/_base/declare',
             'dojo/_base/array',
+            'dojo/_base/lang',
             'dojo/request',
             'JBrowse/Store/SeqFeature',
             'JBrowse/Model/SimpleFeature',
@@ -9,6 +10,7 @@ define([
        function(
             declare,
             array,
+            lang,
             request,
             SeqFeatureStore,
             SimpleFeature,
@@ -57,7 +59,6 @@ return declare( SeqFeatureStore, {
 
                            var process=function(str) {
                                if(!f[str]) return;
-                               console.log(str);
                                feature.data[str+"_attrs"]={};
                                var valkeys=array.filter( dojof.keys(f[str]), function(key) {
                                    return typeof f[str][key]!='object';
@@ -67,6 +68,12 @@ return declare( SeqFeatureStore, {
                                    return typeof f[str][key]=='object' && key!='gene';
                                });
 
+                               if(str=="snpeff"){
+                                   delete f[str]['ann'].cds; // sub-sub-objects, not super informative
+                                   delete f[str]['ann'].cdna;
+                                   delete f[str]['ann'].protein;
+                               }
+
                                array.forEach( valkeys, function(key) {
                                    feature.data[str+"_attrs"][key]=f[str][key];
                                });
@@ -74,6 +81,7 @@ return declare( SeqFeatureStore, {
                                    feature.data[str+"_"+key]=f[str][key];
                                });
                            }
+                           
                            process('cadd');
                            process('cosmic');
                            process('dbnsfp');
@@ -85,11 +93,13 @@ return declare( SeqFeatureStore, {
                            process('snpedia');
                            process('snpeff');
                            process('vcf');
-                           /*process('grasp');*/
+                           process('grasp');
                            process('gwascatalog');
                            process('docm');
                            process('emvclass');
                            process('clinvar');
+                           
+
                            thisB.features[query.start+"_"+query.end].push(feature);
 
                            featureCallback( feature );
