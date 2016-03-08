@@ -1,29 +1,8 @@
 {
 "tracks":[
   {
-     "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-     "urlTemplate" : "http://myvariant.info/v1/query?q={refseq}:{start}-{end}&fields=dbnsfp.exac",
-     "type" : "CanvasFeatures",
-     "label" : "MyVariant.info ExAC",
-     "glyph": "MyVariantViewer/View/FeatureGlyph/ExAC"
-  },
-  {
-     "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-     "urlTemplate" : "http://myvariant.info/v1/query?q={refseq}:{start}-{end}&fields=dbnsfp.1000gp3",
-     "type" : "CanvasFeatures",
-     "label" : "MyVariant.info 1000 genomes",
-     "glyph": "MyVariantViewer/View/FeatureGlyph/1000gp3"
-  },
-  {
-     "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-     "urlTemplate" : "http://myvariant.info/v1/query?q={refseq}:{start}-{end}&fields=dbsnp.alleles",
-     "type" : "CanvasFeatures",
-     "label" : "MyVariant.info dbSNP",
-     "glyph": "MyVariantViewer/View/FeatureGlyph/dbSNP"
-  },
-  {
      "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes",
-     "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all",
+     "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000",
      "subParts" : [
         "exon"
      ],
@@ -33,9 +12,11 @@
   },
   {
      "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-     "urlTemplate" : "http://myvariant.info/v1/query?q={refseq}:{start}-{end}",
+     "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&fetch_all=true&email=colin.diesh@gmail.com",
+     "baseUrl": "http://myvariant.info/v1/",
      "type" : "CanvasFeatures",
-     "label" : "MyVariant.info"
+     "label" : "MyVariant.info",
+     "style": {"featureScale": 0.5}
   }
   ],
   "plugins": ["MyVariantViewer"],

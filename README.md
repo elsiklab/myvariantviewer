@@ -8,7 +8,7 @@ Fetch genes and variants from hg19:
 
       {
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes",
-         "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all",
+         "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all&email=colin.diesh@gmail.com&size=1000",
          "subParts" : [
             "exon"
          ],

@@ -23,7 +23,9 @@ return declare( SeqFeatureStore, {
 
     constructor: function( args ) {
         this.intervals=[];
-        // perform any steps to initialize your new store.  
+
+        // "cache results" by default using a naive algorithm that if interval we are requesting is fully contained in interval we already requested, then use cache
+        this.optimize = this.config.optimizer === undefined ? true: this.config.optimizer;
     },
     getFeatures: function( query, featureCallback, finishCallback, errorCallback ) {
         var thisB = this;
@@ -31,7 +33,7 @@ return declare( SeqFeatureStore, {
             this.config.urlTemplate, { refseq: query.ref, start: query.start, end: query.end }
         );
 
-        if(this.config.optimizer) {
+        if(this.optimize) {
             var done=false;
             var featureFound=0;
 
@@ -66,13 +68,14 @@ return declare( SeqFeatureStore, {
                            var url = thisB.resolveUrl(
                                thisB.config.baseUrl+"query?scroll_id={scroll_id}&size={size}&from={from}", { scroll_id: scroll_id, size: 1000, from: scroll }
                            );
-                           request(url, {handleAs: 'json'}).then(function(features2) {
-                               array.forEach(features2.hits, function(f) {
+                           request(url, {handleAs: 'json'}).then(function(res) {
+                               var feats = res.hits||[];
+                               array.forEach(feats, function(f) {
                                    var feat = thisB.processFeat(f);
                                    interval.features.push(feat);
                                    featureCallback(feat);
                                });
-                               if(features2.hits.length<1000) {
+                               if(feats.length<1000) {
                                    thisB.intervals.push(interval);
                                    finishCallback();
                                }
