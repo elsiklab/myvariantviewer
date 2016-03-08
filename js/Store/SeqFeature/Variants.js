@@ -80,6 +80,13 @@ return declare( SeqFeatureStore, {
                                   if(data['encode']) {
                                       process(str+'_encode',data['encode']);
                                   }
+                                  delete data['encode'];
+                              }
+                              if(str.match(/grasp/)) {
+                                  if(lang.isArray(data['publication'])) {
+                                      array.forEach(data['publication'],function(fm,i) { process(str+'_publication'+i,fm); });
+                                  }
+                                  delete data['publication'];
                               }
                               
                               feature.data[str+"_attrs"+(plus||"")]={};
@@ -88,7 +95,7 @@ return declare( SeqFeatureStore, {
                               });
 
                               var objkeys=array.filter( dojof.keys(data), function(key) {
-                                  return typeof data[key]=='object' && key!='gene' && key!='encode';
+                                  return typeof data[key]=='object' && key!='gene';
                               });
 
                               
