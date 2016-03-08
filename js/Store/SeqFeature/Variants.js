@@ -20,6 +20,7 @@ var dojof = Util.dojof;
 return declare( SeqFeatureStore, {
 
     constructor: function( args ) {
+        this.features={};
         // perform any steps to initialize your new store.  
     },
 
@@ -28,7 +29,17 @@ return declare( SeqFeatureStore, {
         var url = this.resolveUrl(
             this.config.urlTemplate, { refseq: query.ref, start: query.start, end: query.end }
         );
-
+        
+        if(this.features[query.start+"_"+query.end]) {
+            array.forEach(this.features[query.start+"_"+query.end], function(feature) {
+                featureCallback(feature);
+            });
+            finishCallback();
+            return;
+        }
+        else {
+            this.features[query.start+"_"+query.end]=[];
+        }
         request( url,
                  { handleAs: 'json' }
                ).then(
@@ -46,6 +57,7 @@ return declare( SeqFeatureStore, {
 
                            var process=function(str) {
                                if(!f[str]) return;
+                               console.log(str);
                                feature.data[str+"_attrs"]={};
                                var valkeys=array.filter( dojof.keys(f[str]), function(key) {
                                    return typeof f[str][key]!='object';
@@ -71,11 +83,14 @@ return declare( SeqFeatureStore, {
                            process('mutdb');
                            process('wellderly');
                            process('snpedia');
+                           process('snpeff');
+                           process('vcf');
                            /*process('grasp');*/
                            process('gwascatalog');
                            process('docm');
                            process('emvclass');
                            process('clinvar');
+                           thisB.features[query.start+"_"+query.end].push(feature);
 
                            featureCallback( feature );
                        });
