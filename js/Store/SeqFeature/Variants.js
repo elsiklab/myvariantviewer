@@ -57,47 +57,53 @@ return declare( SeqFeatureStore, {
                                    }
                                });
 
-                           var process=function(str) {
-                               if(!f[str]) return;
-                               feature.data[str+"_attrs"]={};
-                               var valkeys=array.filter( dojof.keys(f[str]), function(key) {
-                                   return typeof f[str][key]!='object';
-                               });
-
-                               var objkeys=array.filter( dojof.keys(f[str]), function(key) {
-                                   return typeof f[str][key]=='object' && key!='gene';
-                               });
-
-                               if(str=="snpeff"){
-                                   delete f[str]['ann'].cds; // sub-sub-objects, not super informative
-                                   delete f[str]['ann'].cdna;
-                                   delete f[str]['ann'].protein;
+                           var process=function(str,data,plus) {
+                                if(str=="snpeff"){
+                                   if(lang.isArray(data['ann'])) {
+                                       array.forEach(data['ann'],function(fm,i) { process(str+'_'+i,fm,i); });
+                                       return;
+                                   }
+                                   delete data['ann'].cds; // sub-sub-objects, not super informative
+                                   delete data['ann'].cdna;
+                                   delete data['ann'].protein;
                                }
+                               if(!data) return;
+                               
+                               feature.data[str+"_attrs"+(plus||"")]={};
+                               var valkeys=array.filter( dojof.keys(data), function(key) {
+                                   return typeof data[key]!='object';
+                               });
+
+                               var objkeys=array.filter( dojof.keys(data), function(key) {
+                                   return typeof data[key]=='object' && key!='gene';
+                               });
+
+                               
 
                                array.forEach( valkeys, function(key) {
-                                   feature.data[str+"_attrs"][key]=f[str][key];
+                                   feature.data[str+"_attrs"+(plus||"")][key]=data[key];
                                });
                                array.forEach( objkeys, function(key) {
-                                   feature.data[str+"_"+key]=f[str][key];
+                                   feature.data[str+"_"+key+(plus||"")]=data[key];
                                });
                            }
                            
-                           process('cadd');
-                           process('cosmic');
-                           process('dbnsfp');
-                           process('dbsnp');
-                           process('evs');
-                           process('exac');
-                           process('mutdb');
-                           process('wellderly');
-                           process('snpedia');
-                           process('snpeff');
-                           process('vcf');
-                           process('grasp');
-                           process('gwascatalog');
-                           process('docm');
-                           process('emvclass');
-                           process('clinvar');
+                           process('cadd',f['cadd']);
+                           process('cosmic',f['cosmic']);
+                           process('dbnsfp',f['dbnsfp']);
+                           process('dbsnp',f['dbsnp']);
+                           process('evs',f['evs']);
+                           process('exac',f['exac']);
+                           process('mutdb',f['mutdb']);
+                           process('wellderly',f['wellderly']);
+                           process('snpedia',f['snpedia']);
+                           process('snpeff',f['snpeff']);
+                           process('vcf',f['vcf']);
+                           process('grasp',f['grasp']);
+                           process('gwascatalog',f['gwascatalog']);
+                           process('docm',f['docm']);
+                           process('emvclass',f['emvclass']);
+                           process('clinvar',f['clinvar']);
                            
 
                            thisB.features[query.start+"_"+query.end].push(feature);
