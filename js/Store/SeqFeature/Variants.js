@@ -59,6 +59,7 @@ return declare( SeqFeatureStore, {
 
                            var process=function(str,data,plus) {
                                 if(str=="snpeff"){
+                                   if(!data) return;
                                    if(lang.isArray(data['ann'])) {
                                        array.forEach(data['ann'],function(fm,i) { process(str+'_'+i,fm,i); });
                                        return;
