@@ -83,7 +83,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emvclass&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=emvclass",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emv&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=emv",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info emvclass",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"

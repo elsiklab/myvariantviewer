@@ -174,7 +174,7 @@ return declare( SeqFeatureStore, {
         process('grasp',f['grasp']);
         process('gwassnps',f['gwassnps']);
         process('docm',f['docm']);
-        process('emvclass',f['emvclass']);
+        process('emv',f['emv']);
         process('clinvar',f['clinvar']);
 
         return feature;
