@@ -93,8 +93,8 @@ return declare( SeqFeatureStore, {
         var feature = new SimpleFeature({
                 id: f._id,
                 data: {
-                    start: start,
-                    end: start+1,
+                    start: start-1,
+                    end: start,
                     id: f._id
                 }
             });
