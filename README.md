@@ -28,7 +28,7 @@ Note: we now use a "scroll query" for variants, so fetch_all should be supplied 
 
 ## Only query from a specific data source
 
-Example to only query variants from clinvar (combining _exists_ in clinvar with fields=clinvar
+Example to only query variants from clinvar (combining the exists-in clinvar query with fields=clinvar return values)
 
       {
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
