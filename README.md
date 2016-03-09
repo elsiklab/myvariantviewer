@@ -38,10 +38,8 @@ Example to only query variants from clinvar (combining the exists-in clinvar que
          "label" : "MyVariant.info clinvar"
       }
 
+See https://github.com/cmdcolin/myvariantviewer/blob/master/test/trackList.json for more
+
 ## Screenshots
 
-![](img/out.png)
-
-![](img/example.png)
-
-
+![](img/dialog.png)

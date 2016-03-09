@@ -140,7 +140,7 @@
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:grasp&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=grasp",
          "type" : "CanvasFeatures",
-         "label" : "MyVariant.info cadd",
+         "label" : "MyVariant.info grasp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
