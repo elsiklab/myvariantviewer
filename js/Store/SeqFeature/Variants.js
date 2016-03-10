@@ -78,14 +78,14 @@ return declare( SeqFeatureStore, {
                                 thisB.config.baseUrl+"query?scroll_id={scroll_id}&size={size}&from={from}", { scroll_id: scroll_id, size: 1000, from: scroll }
                             );
                             request(url, { handleAs: 'json' }).then(function(feature_res) {
-                                var feats = feature_res.hits||[];
-                                array.forEach(feats, function(f) {
-                                    var feat = thisB.processFeat(f);
-                                    interval.features.push(feat);
-                                    featureCallback(feat);
+                                var feats = feature_res.hits || [];
+                                array.forEach( feats, function( f ) {
+                                    var feat = thisB.processFeat( f );
+                                    interval.features.push( feat );
+                                    featureCallback( feat );
                                 });
-                                if(feats.length<1000) {
-                                    thisB.intervals.push(interval);
+                                if( feats.length<1000 ) {
+                                    thisB.intervals.push( interval );
                                     finishCallback();
                                 }
                                 else {
@@ -98,13 +98,12 @@ return declare( SeqFeatureStore, {
                     errorCallback);
                 }
                 else {
-                    var feats = featuredata.hits||[];
                     array.forEach( feats, function(f) {
-                        var feat = thisB.processFeat(f);
-                        interval.features.push(feat);
-                        featureCallback(feat);
+                        var feat = thisB.processFeat( f );
+                        interval.features.push( feat );
+                        featureCallback( feat );
                     });
-                    thisB.intervals.push(interval);
+                    thisB.intervals.push( interval );
                     finishCallback();
                 }
             },
