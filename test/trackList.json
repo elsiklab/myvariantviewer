@@ -12,17 +12,6 @@
       },
       {
          "style" : {
-            "color" : "#665"
-         },
-         "baseUrl" : "http://myvariant.info/v1/",
-         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:evs&size=1000&email=colin.diesh@gmail.com&fields=evs",
-         "type" : "CanvasFeatures",
-         "label" : "MyVariant.info evs",
-         "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
-      },
-      {
-         "style" : {
             "color" : "{colorfun}",
             "featureScale" : 0.5
          },
@@ -31,6 +20,17 @@
          "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&email=colin.diesh@gmail.com",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info",
+         "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
+      },
+      {
+         "style" : {
+            "color" : "#665"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:evs&size=1000&email=colin.diesh@gmail.com&fields=evs",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info evs",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -190,5 +190,6 @@
 
   ],
   "plugins": ["MyVariantViewer"],
+  "include": ["functions.conf"],
   "highResolutionMode":2
 }
