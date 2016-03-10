@@ -73,7 +73,7 @@ return declare( SeqFeatureStore, {
                 if( feats.length>=1000 ) {
                     //setup scroll query
                     request( url + "&fetch_all=true", { handleAs: 'json' }).then(function(fetch_all_result) {
-                        function iter( scroll_id, iter ) {
+                        function iter( scroll_id, scroll ) {
                             var url = thisB.resolveUrl(
                                 thisB.config.baseUrl+"query?scroll_id={scroll_id}&size={size}&from={from}", { scroll_id: scroll_id, size: 1000, from: scroll }
                             );
