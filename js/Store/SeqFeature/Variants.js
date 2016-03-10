@@ -69,7 +69,6 @@ return declare( SeqFeatureStore, {
         request( url, { handleAs: 'json' }).then(
             function( featuredata ) {
                 var feats = featuredata.hits||[];
-                console.log( feats.length );
                 if( feats.length>=1000 ) {
                     //setup scroll query
                     request( url + "&fetch_all=true", { handleAs: 'json' }).then(function(fetch_all_result) {
