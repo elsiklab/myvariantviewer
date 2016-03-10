@@ -33,62 +33,83 @@ return declare( SeqFeatureStore, {
             this.config.urlTemplate, { refseq: query.ref, start: query.start, end: query.end }
         );
 
-        if(this.optimize) {
-            var done=false;
-            var featureFound=0;
+        if( this.optimize ) {
+            var done = false;
+            var featureFound = 0;
 
-            array.forEach(this.intervals, function(interval) {
-                if(query.start >= interval.start && query.end <= interval.end) {
-                    array.forEach(interval.features, function(feature) {
-                        if(!(feature.get('start')>query.end&&feature.get('end')<query.start)) {
+            array.forEach( this.intervals, function(interval) {
+                if( query.start >= interval.start && query.end <= interval.end ) {
+                    array.forEach( interval.features, function(feature) {
+                        if( !(feature.get('start')>query.end&&feature.get('end')<query.start) ) {
                             featureFound++;
                             featureCallback(feature);
                         }
                     });
-                    if(interval.features) {
-                        done=true;
+                    if( interval.features ) {
+                        done = true;
                         return;
                     }
                 }
             });
 
-            if(done) {
+            if( done ) {
                 finishCallback();
                 return;
             }
         }
 
-        var interval = { start: query.start, end: query.end, ref: query.ref, features: [] };
+        //cache intervals
+        var interval = {
+            start: query.start,
+            end: query.end,
+            ref: query.ref,
+            features: []
+        };
 
-        request( url,
-                 { handleAs: 'json' }
-               ).then(
-                   function( featuredata ) {
-                       var iter = function(scroll_id, scroll) {
-                           var url = thisB.resolveUrl(
-                               thisB.config.baseUrl+"query?scroll_id={scroll_id}&size={size}&from={from}", { scroll_id: scroll_id, size: 1000, from: scroll }
-                           );
-                           request(url, {handleAs: 'json'}).then(function(res) {
-                               var feats = res.hits||[];
-                               array.forEach(feats, function(f) {
-                                   var feat = thisB.processFeat(f);
-                                   interval.features.push(feat);
-                                   featureCallback(feat);
-                               });
-                               if(feats.length<1000) {
-                                   thisB.intervals.push(interval);
-                                   finishCallback();
-                               }
-                               else {
-                                   iter(scroll_id, scroll + 1000);
-                               }
-                           }, errorCallback);
-                       }
-                       iter(featuredata._scroll_id, 0);
-                   },
-
-                   errorCallback
-               );
+        request( url, { handleAs: 'json' }).then(
+            function( featuredata ) {
+                var feats = featuredata.hits||[];
+                console.log( feats.length );
+                if( feats.length>=1000 ) {
+                    //setup scroll query
+                    request( url + "&fetch_all=true", { handleAs: 'json' }).then(function(fetch_all_result) {
+                        function iter( scroll_id, iter ) {
+                            var url = thisB.resolveUrl(
+                                thisB.config.baseUrl+"query?scroll_id={scroll_id}&size={size}&from={from}", { scroll_id: scroll_id, size: 1000, from: scroll }
+                            );
+                            request(url, { handleAs: 'json' }).then(function(feature_res) {
+                                var feats = feature_res.hits||[];
+                                array.forEach(feats, function(f) {
+                                    var feat = thisB.processFeat(f);
+                                    interval.features.push(feat);
+                                    featureCallback(feat);
+                                });
+                                if(feats.length<1000) {
+                                    thisB.intervals.push(interval);
+                                    finishCallback();
+                                }
+                                else {
+                                    iter( scroll_id, scroll + 1000 );
+                                }
+                            }, errorCallback);
+                        }
+                        iter( fetch_all_result._scroll_id, 0 );
+                    },
+                    errorCallback);
+                }
+                else {
+                    var feats = featuredata.hits||[];
+                    array.forEach( feats, function(f) {
+                        var feat = thisB.processFeat(f);
+                        interval.features.push(feat);
+                        featureCallback(feat);
+                    });
+                    thisB.intervals.push(interval);
+                    finishCallback();
+                }
+            },
+            errorCallback
+       );
 
     },
     processFeat: function( f ) {

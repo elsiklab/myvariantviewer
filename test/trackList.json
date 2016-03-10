@@ -16,7 +16,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:evs&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=evs",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:evs&size=1000&email=colin.diesh@gmail.com&fields=evs",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info evs",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -28,7 +28,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&fetch_all=true&email=colin.diesh@gmail.com",
+         "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&email=colin.diesh@gmail.com",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -39,7 +39,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:gwassnps&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=gwassnps",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:gwassnps&size=1000&email=colin.diesh@gmail.com&fields=gwassnps",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info gwas catalog",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -50,7 +50,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cosmic&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=cosmic",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cosmic&size=1000&email=colin.diesh@gmail.com&fields=cosmic",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info cosmic",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -61,7 +61,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:mutdb&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=mutdb",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:mutdb&size=1000&email=colin.diesh@gmail.com&fields=mutdb",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info mutdb",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -72,7 +72,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpeff&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=snpeff",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpeff&size=1000&email=colin.diesh@gmail.com&fields=snpeff",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info snpeff",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -83,7 +83,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emv&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=emv",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emv&size=1000&email=colin.diesh@gmail.com&fields=emv",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info emvclass",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -94,7 +94,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:docm&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=docm",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:docm&size=1000&email=colin.diesh@gmail.com&fields=docm",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info docm",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -105,7 +105,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpedia&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=snpedia",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpedia&size=1000&email=colin.diesh@gmail.com&fields=snpedia",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info snpedia",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -116,7 +116,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:clinvar&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=clinvar",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:clinvar&size=1000&email=colin.diesh@gmail.com&fields=clinvar",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info clinvar",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -127,7 +127,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cadd&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=cadd",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cadd&size=1000&email=colin.diesh@gmail.com&fields=cadd",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info cadd",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -138,7 +138,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:grasp&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=grasp",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:grasp&size=1000&email=colin.diesh@gmail.com&fields=grasp",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info grasp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -149,7 +149,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:exac&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=exac",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:exac&size=1000&email=colin.diesh@gmail.com&fields=exac",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info exac",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -160,7 +160,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:wellderly&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=wellderly",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:wellderly&size=1000&email=colin.diesh@gmail.com&fields=wellderly",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info wellderly",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -171,7 +171,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbsnp&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=dbsnp",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbsnp&size=1000&email=colin.diesh@gmail.com&fields=dbsnp",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info dbsnp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -182,7 +182,7 @@
          },
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbnsfp&size=1000&fetch_all=true&email=colin.diesh@gmail.com&fields=dbnsfp",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbnsfp&size=1000&email=colin.diesh@gmail.com&fields=dbnsfp",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info dbnsfp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
