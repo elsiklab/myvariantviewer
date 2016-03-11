@@ -186,6 +186,18 @@
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info dbnsfp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
+      },
+      {
+          "type": "SVGLollipop",
+          "baseUrl" : "http://myvariant.info/v1/",
+          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cosmic&size=1000&email=colin.diesh@gmail.com&fields=cosmic",
+          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+          "label": "VariantLollipop",
+          "style": {
+              "height": "function(feature) { return feature.get('cosmic_attrs').mut_freq; }",
+              "circleColor": "{cancerColor}",
+              "defaultHeight": 300
+          }
       }
 
   ],
