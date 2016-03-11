@@ -153,6 +153,17 @@ return declare( SeqFeatureStore, {
                else process(str+'_rcv', data['rcv']);
                delete data['rcv'];
            }
+           if(str.match(/dbnsfp/)) {
+               if(data['fathmm']) {
+                   for(i in data['fathmm'].score) { if(data['fathmm'].score[i]===null) data['fathmm'].score[i]=''; }
+               }
+               if(data['provean']) {
+                   for(i in data['provean'].score) { if(data['provean'].score[i]===null) data['provean'].score[i]=''; }
+               }
+               if(data['sift']) {
+                   for(i in data['sift'].score) { if(data['sift'].score[i]===null) data['sift'].score[i]=''; }
+               }
+           }
            if(str.match(/grasp/)) {
                if(lang.isArray(data['publication'])) {
                    array.forEach(data['publication'],function(fm,i) { process(str+'_publication'+i,fm); });
