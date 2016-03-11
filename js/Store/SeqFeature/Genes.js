@@ -1,6 +1,7 @@
 define([
             'dojo/_base/declare',
             'dojo/_base/array',
+            'dojo/_base/lang',
             'dojo/request',
             'JBrowse/Store/SeqFeature',
             'JBrowse/Model/SimpleFeature'
@@ -8,6 +9,7 @@ define([
        function(
             declare,
             array,
+            lang,
             request,
             SeqFeatureStore,
             SimpleFeature
@@ -33,15 +35,19 @@ return declare( SeqFeatureStore, {
                        array.forEach( featuredata.hits, function(f) {
                            var superfeat = new SimpleFeature({
                                id: f._id,
-                               data: {
+                               data: lang.mixin( lang.clone(f), {
                                    start: [f.genomic_pos,f.genomic_pos_hg19][hg19].start,
                                    end: [f.genomic_pos,f.genomic_pos_hg19][hg19].end,
                                    strand: [f.genomic_pos,f.genomic_pos_hg19][hg19].strand,
                                    name: f.symbol,
                                    description: f.name,
                                    type: 'gene',
+                                   exons: null,
+                                   exons_hg19: null,
+                                   genomic_pos_hg19: null,
+                                   genomic_pos: null,
                                    subfeatures: []
-                               }
+                               })
                            });
                            if( ![f.exons,f.exons_hg19][hg19] ) {
                                var feature = new SimpleFeature({
@@ -62,26 +68,32 @@ return declare( SeqFeatureStore, {
                                var t = [f.exons,f.exons_hg19][hg19][key];
                                var feature = new SimpleFeature({
                                        id: key,
-                                       data: {
+                                       data: lang.mixin( lang.clone(t), {
                                            start: t.txstart,
                                            end: t.txend,
                                            strand: t.strand,
                                            type: 'mRNA',
                                            name: key,
+                                           exons: null,
+                                           txend: null,
+                                           txstart: null,
+                                           cdsstart: null,
+                                           cdsend: null,
+                                           chr: null,
                                            subfeatures: []
-                                       },
+                                       }),
                                        parent: superfeat
                                    });
                                superfeat.data.subfeatures.push(feature);
 
                                array.forEach( t.exons, function(e) {
                                    var subfeat = new SimpleFeature({
-                                       data: {
+                                       data: lang.mixin( lang.clone(e), {
                                            start: e[0],
                                            end: e[1],
                                            strand: [f.genomic_pos,f.genomic_pos_hg19][hg19].strand,
                                            type: 'exon'
-                                       },
+                                       }),
                                        parent: feature
                                    });
                                    feature.data.subfeatures.push(subfeat);
