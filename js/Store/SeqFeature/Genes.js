@@ -42,13 +42,13 @@ return declare( SeqFeatureStore, {
                                    name: f.symbol,
                                    description: f.name,
                                    type: 'gene',
-                                   exons: null,
-                                   exons_hg19: null,
-                                   genomic_pos_hg19: null,
-                                   genomic_pos: null,
+                                   reagent: null,
+                                   reporter: null,
                                    subfeatures: []
                                })
                            });
+                           delete superfeat.data.exons;
+                           delete superfeat.data.exons_hg19;
                            if( ![f.exons,f.exons_hg19][hg19] ) {
                                var feature = new SimpleFeature({
                                    id: f._id+'-transcript',
