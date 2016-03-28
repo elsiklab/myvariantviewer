@@ -155,13 +155,13 @@ return declare( SeqFeatureStore, {
            }
            if(str.match(/dbnsfp/)) {
                if(data['fathmm']) {
-                   for(i in data['fathmm'].score) { if(data['fathmm'].score[i]===null) data['fathmm'].score[i]=''; }
+                   for(var i in data['fathmm'].score) { if(data['fathmm'].score[i]===null) data['fathmm'].score[i]=''; }
                }
                if(data['provean']) {
-                   for(i in data['provean'].score) { if(data['provean'].score[i]===null) data['provean'].score[i]=''; }
+                   for(var i in data['provean'].score) { if(data['provean'].score[i]===null) data['provean'].score[i]=''; }
                }
                if(data['sift']) {
-                   for(i in data['sift'].score) { if(data['sift'].score[i]===null) data['sift'].score[i]=''; }
+                   for(var i in data['sift'].score) { if(data['sift'].score[i]===null) data['sift'].score[i]=''; }
                }
            }
            if(str.match(/grasp/)) {
