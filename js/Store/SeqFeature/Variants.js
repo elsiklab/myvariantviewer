@@ -26,14 +26,19 @@ return declare( SeqFeatureStore, {
 
         // "cache results" by default using a naive algorithm that if interval we are requesting is fully contained in interval we already requested, then use cache
         this.optimize = this.config.optimizer === undefined ? true: this.config.optimizer;
+        this.refSeqTransform = this.config.refSeqTransform === undefined ? false: this.config.refSeqTransform;
     },
     getFeatures: function( query, featureCallback, finishCallback, errorCallback ) {
         var thisB = this;
+        var ref = query.ref;
+        if (this.refSeqTransform) {
+            ref = ref.match(/chr(\d+)/)[1];
+        }
         var url = this.resolveUrl(
-            this.config.urlTemplate, { refseq: query.ref, start: query.start, end: query.end }
+            this.config.urlTemplate, { refseq: ref, start: query.start, end: query.end }
         );
 
-        if( this.optimize ) {
+        if (this.optimize) {
             var done = false;
             var featureFound = 0;
 
@@ -62,7 +67,7 @@ return declare( SeqFeatureStore, {
         var interval = {
             start: query.start,
             end: query.end,
-            ref: query.ref,
+            ref: ref,
             features: []
         };
 
@@ -112,6 +117,7 @@ return declare( SeqFeatureStore, {
     },
     processFeat: function( f ) {
         var start = +f._id.match(/chr.*:g.([0-9]+)/)[1];
+        console.log(f._id,start);
         var feature = new SimpleFeature({
                 id: f._id,
                 data: {

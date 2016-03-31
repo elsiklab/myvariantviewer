@@ -1,18 +1,18 @@
-define(['dojo/_base/declare',
-           'dojo/_base/lang',
-           'JBrowse/View/FeatureGlyph/Box'],
-       function(declare,
-           lang,
-           Box) {
+define([
+            'dojo/_base/declare',
+            'dojo/_base/lang',
+            'JBrowse/View/FeatureGlyph/Box'],
+       function(
+            declare,
+            lang,
+            Box
+       ) {
 
 return declare(Box, {
 
-    renderBox: function( context, viewInfo, feature, top, overallHeight, parentFeature, style ) {
+    renderBox: function (context, viewInfo, feature, top, overallHeight, parentFeature, style) {
 
         var left  = viewInfo.block.bpToX( feature.get('start') );
-        //left = Math.round( left );
-        //width = Math.round( width );
-
         style = style || lang.hitch( this, 'getStyle' );
 
         var height = this._getFeatureHeight( viewInfo, feature );
