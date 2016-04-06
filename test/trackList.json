@@ -20,6 +20,7 @@
          "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&email=colin.diesh@gmail.com",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info",
+         "optimizer": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -32,6 +33,7 @@
          "refSeqTransform": true,
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info evs",
+         "optimizer": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -42,6 +44,7 @@
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:gwassnps&size=1000&email=colin.diesh@gmail.com&fields=gwassnps",
          "type" : "CanvasFeatures",
+         "optimizer": true,
          "label" : "MyVariant.info gwas catalog",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
@@ -54,6 +57,7 @@
          "urlTemplate" : "query?q=cosmic.chrom:[{refseq} TO {refseq}] AND cosmic.hg19.start:<={end} AND cosmic.hg19.end:>={start}&size=1000&email=colin.diesh@gmail.com&fields=cosmic",
          "refSeqTransform": true,
          "type" : "CanvasFeatures",
+         "optimizer": true,
          "label" : "MyVariant.info cosmic",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
@@ -65,6 +69,7 @@
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q=mutdb.chrom:[{refseq} TO {refseq}] AND mutdb.hg19.start:<={end} AND mutdb.hg19.end:>={start}&size=1000&email=colin.diesh@gmail.com&fields=mutdb",
          "refSeqTransform": true,
+         "optimizer": true,
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info mutdb",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -78,6 +83,7 @@
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpeff&size=1000&email=colin.diesh@gmail.com&fields=snpeff",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info snpeff",
+         "optimizer": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -89,6 +95,19 @@
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emv&size=1000&email=colin.diesh@gmail.com&fields=emv",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info emvclass",
+         "optimizer": true,
+         "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
+      },
+      {
+         "style" : {
+            "color" : "#3ff"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:docm&size=1000&email=colin.diesh@gmail.com&fields=docm",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info docm (unindex)",
+         "optimizer": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -100,6 +119,7 @@
          "refSeqTransform": true,
          "urlTemplate" : "query?q=docm.chrom:[{refseq} TO {refseq}] AND docm.hg19.start:<={end} AND docm.hg19.end:>={start}&size=1000&email=colin.diesh@gmail.com&fields=docm",
          "type" : "CanvasFeatures",
+         "optimizer": true,
          "label" : "MyVariant.info docm",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
@@ -110,6 +130,7 @@
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpedia&size=1000&email=colin.diesh@gmail.com&fields=snpedia",
+         "optimizer": true,
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info snpedia",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -122,6 +143,7 @@
          "refSeqTransform": true,
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q=clinvar.chrom:[{refseq} TO {refseq}] AND clinvar.hg19.start:<={end} AND clinvar.hg19.end:>={start}&size=1000&email=colin.diesh@gmail.com&fields=clinvar",
+         "optimizer": true,
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info clinvar",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -133,8 +155,21 @@
          "baseUrl" : "http://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cadd&size=1000&email=colin.diesh@gmail.com&fields=cadd",
+         "optimizer": true,
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info cadd",
+         "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
+      },
+      {
+         "style" : {
+            "color" : "#22a"
+         },
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:grasp&size=1000&email=colin.diesh@gmail.com&fields=grasp",
+         "type" : "CanvasFeatures",
+         "label" : "MyVariant.info grasp (unindex)",
+         "optimizer": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -146,6 +181,7 @@
          "urlTemplate" : "query?q=grasp.hg19.chr:[{refseq} TO {refseq}] AND grasp.hg19.pos:<={end} AND grasp.hg19.pos:>={start}&size=1000&email=colin.diesh@gmail.com&fields=grasp",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info grasp",
+         "optimizer": true,
          "refSeqTransform": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
@@ -157,6 +193,7 @@
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:exac&size=1000&email=colin.diesh@gmail.com&fields=exac",
          "type" : "CanvasFeatures",
+         "optimizer": true,
          "label" : "MyVariant.info exac",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
@@ -168,6 +205,7 @@
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q=wellderly.chrom:[{refseq} TO {refseq}] AND wellderly.hg19.start:<={end} AND wellderly.hg19.end:>={start}&size=1000&email=colin.diesh@gmail.com&fields=wellderly",
          "refSeqTransform": true,
+         "optimizer": true,
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info wellderly",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
@@ -182,6 +220,7 @@
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info dbsnp",
          "refSeqTransform": true,
+         "optimizer": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -194,20 +233,22 @@
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info dbnsfp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond",
+         "optimizer": true,
          "refSeqTransform": true
       },
       {
-          "type": "SVGLollipop",
-          "baseUrl" : "http://myvariant.info/v1/",
-          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-          "urlTemplate" : "query?q=cosmic.chrom:[{refseq} TO {refseq}] AND cosmic.hg19.start:<={end} AND cosmic.hg19.end:>={start}&size=1000&email=colin.diesh@gmail.com&fields=cosmic",
-          "refSeqTransform": true,
-          "label": "VariantLollipop",
-          "style": {
-              "height": "function(feature) { return feature.get('cosmic_attrs').mut_freq; }",
-              "circleColor": "{cancerColor}",
-              "defaultHeight": 300
-          }
+         "type": "SVGLollipop",
+         "baseUrl" : "http://myvariant.info/v1/",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
+         "urlTemplate" : "query?q=cosmic.chrom:[{refseq} TO {refseq}] AND cosmic.hg19.start:<={end} AND cosmic.hg19.end:>={start}&size=1000&email=colin.diesh@gmail.com&fields=cosmic",
+         "refSeqTransform": true,
+         "label": "VariantLollipop",
+         "style": {
+            "height": "function(feature) { return feature.get('cosmic_attrs').mut_freq; }",
+            "circleColor": "{cancerColor}",
+            "defaultHeight": 300
+         },
+         "optimizer": true
       }
 
   ],
