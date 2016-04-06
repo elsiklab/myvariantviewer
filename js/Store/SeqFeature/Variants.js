@@ -117,7 +117,6 @@ return declare( SeqFeatureStore, {
     },
     processFeat: function( f ) {
         var start = +f._id.match(/chr.*:g.([0-9]+)/)[1];
-        console.log(f._id,start);
         var feature = new SimpleFeature({
                 id: f._id,
                 data: {
