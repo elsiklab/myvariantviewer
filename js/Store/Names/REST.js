@@ -38,8 +38,8 @@ return declare( null,
                 var val = Object.keys(dat).filter(function(key) { return !key.startsWith("_"); }).map(function(elt) { return {label: "MyVariant.info "+elt}; });
                 console.log(val);
                 return {
-                    label: name,
-                    name: name,
+                    label: name + " ("+dat._id+")",
+                    name: name + " ("+dat._id+")",
                     location: {ref: chr, start: start, end: (start+1), tracks: val},
                 };
             });
