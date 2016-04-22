@@ -24,7 +24,13 @@ Fetch genes and variants from hg19:
          "label" : "MyVariant.info"
       }
 
-Note: we now use a "scroll query" for variants, so fetch_all should be supplied in the URL template, and the baseUrl should be separate from urlTemplate in the Variants track
+Also note that a name store can be configured for querying myvariant.info via the search box as well
+
+  "names": {
+      "type": "MyVariantViewer/Store/Names/REST",
+      "url": "http://myvariant.info/v1/query"
+  }
+
 
 ## Only query from a specific data source
 
