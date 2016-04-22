@@ -48,7 +48,8 @@
          "category": "Range query",
          "type" : "CanvasFeatures",
          "optimizer": true,
-         "label" : "MyVariant.info gwas catalog",
+         "label" : "MyVariant.info gwassnps",
+         "key": "MyVariant.info gwas catalog"
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
       {
@@ -101,6 +102,7 @@
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emv&size=1000&email=colin.diesh@gmail.com&fields=emv",
          "type" : "CanvasFeatures",
          "label" : "MyVariant.info emvclass",
+         "category": "Range query",
          "optimizer": true,
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond"
       },
