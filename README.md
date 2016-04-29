@@ -26,10 +26,10 @@ Fetch genes and variants from hg19:
 
 Also note that a name store can be configured for querying myvariant.info via the search box as well
 
-  "names": {
-      "type": "MyVariantViewer/Store/Names/REST",
-      "url": "http://myvariant.info/v1/query"
-  }
+    "names": {
+        "type": "MyVariantViewer/Store/Names/REST",
+        "url": "http://myvariant.info/v1/query"
+    }
 
 
 ## Only query from a specific data source
