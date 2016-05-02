@@ -30,20 +30,17 @@ return declare( null,
         return xhr( thisB.url+"?"+ioQuery.objectToQuery({q: name} ),
                     { handleAs: "json" }
         ).then(function(data){
-            console.log(data.hits);
             var res = array.map(data.hits, function(dat) {
                 var ret = dat._id.match(/(chr.*):g.([0-9]+)/);
                 var chr = ret[1];
                 var start = +ret[2];
                 var val = Object.keys(dat).filter(function(key) { return !key.startsWith("_"); }).map(function(elt) { return {label: "MyVariant.info "+elt}; });
-                console.log(val);
                 return {
                     label: name + " ("+dat._id+")",
                     name: name + " ("+dat._id+")",
                     location: {ref: chr, start: start, end: (start+1), tracks: val},
                 };
             });
-            console.log(res);
             return QueryResults( res );
         }, function(err){
             // Handle the error condition
