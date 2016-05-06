@@ -55,4 +55,6 @@ Figure. Shows the grasp and clinvar specific data tracks from the test/trackList
 
 # Demo
 
-You can use the test/trackList.json sample data directory without any other setup, navigate to http://localhost/jbrowse/?data=plugins/MyVariantViewer/test after installing the plugin in the plugins/MyVariantViewer directory. Clicking on a variant will bring up the relevant information about each variant.
+https://cmdcolin.github.io/jbrowse/
+
+The test/trackList.json sample data directory can also be used as a reference
