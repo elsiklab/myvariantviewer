@@ -52,9 +52,15 @@ See https://github.com/cmdcolin/myvariantviewer/blob/master/test/trackList.json 
 
 Figure. Shows the grasp and clinvar specific data tracks from the test/trackList.json sample dataset.
 
+## Notes
+
+Currently tested with v2 and v3 of MyGene.info and v1 of MyVariant.info
 
 # Demo
 
 [https://cmdcolin.github.io/jbrowse/](https://cmdcolin.github.io/jbrowse/?loc=chr1%3A109416545..109492484&tracks=MyGene.info%2CMyVariant.info%20clinvar&highlight=)
 
 The test/trackList.json sample data directory can also be used as a reference
+
+
+

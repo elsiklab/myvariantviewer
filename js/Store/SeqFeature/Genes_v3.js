@@ -21,12 +21,15 @@ function(
 
             request(url, { handleAs: 'json' }).then(function(featuredata) {
                 array.forEach(featuredata.hits, function(f) {
+                    var genomic_pos = [f.genomic_pos, f.genomic_pos_hg19][hg19];
+                    var exons = [f.exons, f.exons_hg19][hg19];
+                    if(lang.isArray(genomic_pos)) genomic_pos = genomic_pos[0];
                     var superfeat = new SimpleFeature({
                         id: f._id,
                         data: lang.mixin(lang.clone(f), {
-                            start: [f.genomic_pos, f.genomic_pos_hg19][hg19].start,
-                            end: [f.genomic_pos, f.genomic_pos_hg19][hg19].end,
-                            strand: [f.genomic_pos, f.genomic_pos_hg19][hg19].strand,
+                            start: genomic_pos.start,
+                            end: genomic_pos.end,
+                            strand: genomic_pos.strand,
                             name: f.symbol,
                             description: f.name,
                             type: 'gene',
@@ -37,13 +40,13 @@ function(
                     });
                     delete superfeat.data.exons;
                     delete superfeat.data.exons_hg19;
-                    if (![f.exons, f.exons_hg19][hg19]) {
+                    if (!exons) {
                         var feature = new SimpleFeature({
                             id: f._id + '-transcript',
                             data: {
-                                start: [f.genomic_pos, f.genomic_pos_hg19][hg19].start,
-                                end: [f.genomic_pos, f.genomic_pos_hg19][hg19].end,
-                                strand: [f.genomic_pos, f.genomic_pos_hg19][hg19].strand,
+                                start: genomic_pos.start,
+                                end: genomic_pos.end,
+                                strand: genomic_pos.strand,
                                 type: 'mRNA',
                                 name: f.name + '-transcript',
                                 subfeatures: []
@@ -52,40 +55,34 @@ function(
                         });
                         superfeat.data.subfeatures.push(feature);
                     }
-                    array.forEach(Object.keys([f.exons, f.exons_hg19][hg19] || {}), function(key) {
-                        var t = [f.exons, f.exons_hg19][hg19][key];
-                        var transcriptFeature = new SimpleFeature({
-                            id: key,
-                            data: lang.mixin(lang.clone(t), {
-                                start: t.txstart,
-                                end: t.txend,
-                                strand: t.strand,
+                    var transcripts = {};
+                    array.forEach(exons, function(exon) {
+                        var tname = exon.transcript;
+                        var ts = new SimpleFeature({
+                            id: tname,
+                            data: lang.mixin({
+                                start: exon.txstart,
+                                end: exon.txend,
+                                strand: exon.strand,
                                 type: 'mRNA',
-                                name: key,
-                                exons: null,
-                                txend: null,
-                                txstart: null,
-                                cdsstart: null,
-                                cdsend: null,
-                                chr: null,
+                                name: tname,
                                 subfeatures: []
                             }),
                             parent: superfeat
                         });
-                        superfeat.data.subfeatures.push(transcriptFeature);
-
-                        array.forEach(t.exons, function(e) {
+                        array.forEach(exon.position, function(pos) {
                             var subfeat = new SimpleFeature({
-                                data: lang.mixin(lang.clone(e), {
-                                    start: e[0],
-                                    end: e[1],
-                                    strand: [f.genomic_pos, f.genomic_pos_hg19][hg19].strand,
+                                data: lang.mixin(lang.clone(exon), {
+                                    start: pos[0],
+                                    end: pos[1],
+                                    strand: genomic_pos.strand,
                                     type: 'exon'
                                 }),
-                                parent: transcriptFeature
+                                parent: ts
                             });
-                            transcriptFeature.data.subfeatures.push(subfeat);
+                            ts.data.subfeatures.push(subfeat);
                         });
+                        superfeat.data.subfeatures.push(ts);
                     });
                     featureCallback(superfeat);
                 });
