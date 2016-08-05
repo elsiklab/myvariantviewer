@@ -44,23 +44,21 @@ Example to only query variants from clinvar (combining the exists-in clinvar que
          "label" : "MyVariant.info clinvar"
       }
 
-See https://github.com/cmdcolin/myvariantviewer/blob/master/test/trackList.json for more
+See https://github.com/cmdcolin/myvariantviewer/blob/master/test/ for test data on hg19 and hg38
 
 ## Screenshots
 
 ![](img/typical.png)
 
-Figure. Shows the grasp and clinvar specific data tracks from the test/trackList.json sample dataset.
+Figure. Shows the grasp and clinvar specific data tracks.
 
 ## Notes
 
-Currently tested with v2 and v3 of MyGene.info and v1 of MyVariant.info
+Currently tested with v2 and v3 of MyGene.info and v1 of MyVariant.info on hg19 and hg38 builds. See test directory for sample tracks.
 
 # Demo
 
 [https://cmdcolin.github.io/jbrowse/](https://cmdcolin.github.io/jbrowse/?loc=chr1%3A109416545..109492484&tracks=MyGene.info%2CMyVariant.info%20clinvar&highlight=)
-
-The test/trackList.json sample data directory can also be used as a reference
 
 
 
