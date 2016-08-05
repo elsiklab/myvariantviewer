@@ -190,6 +190,7 @@ function(
             process('docm', f.docm);
             process('emv', f.emv);
             process('clinvar', f.clinvar);
+            process('uniprot', f.uniprot);
 
             return feature;
         }
