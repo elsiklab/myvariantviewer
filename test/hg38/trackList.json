@@ -100,5 +100,6 @@
   ],
   "plugins": ["MyVariantViewer"],
   "include": ["functions.conf"],
-  "highResolutionMode":2
+  "highResolutionMode":2,
+  "classicMenu": true
 }
