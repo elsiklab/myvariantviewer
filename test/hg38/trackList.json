@@ -2,7 +2,7 @@
     "tracks":[
       {
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes_v3",
-         "urlTemplate" : "http://mygene.info/v3/query?q={refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
+         "urlTemplate" : "https://mygene.info/v3/query?q={refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
          "subParts" : [
             "exon"
          ],
@@ -11,7 +11,7 @@
       },
       {
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes",
-         "urlTemplate" : "http://mygene.info/v2/query?q={refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
+         "urlTemplate" : "https://mygene.info/v2/query?q={refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
          "subParts" : [
             "exon"
          ],
@@ -23,7 +23,7 @@
             "color" : "{colorfun}",
             "featureScale" : 0.5
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&email=colin.diesh@gmail.com&assembly=hg38",
          "type" : "CanvasFeatures",
@@ -36,7 +36,7 @@
          "style" : {
             "color" : "#665"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:evs&size=1000&email=colin.diesh@gmail.com&fields=evs&assembly=hg38",
          "type" : "CanvasFeatures",
@@ -49,7 +49,7 @@
          "style" : {
             "color" : "cyan"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:clinvar&size=1000&email=colin.diesh@gmail.com&fields=clinvar&assembly=hg38",
          "optimizer": true,
@@ -62,7 +62,7 @@
          "style" : {
             "color" : "#5e4"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbsnp&size=1000&email=colin.diesh@gmail.com&fields=dbsnp&assembly=hg38",
          "type" : "CanvasFeatures",
@@ -75,7 +75,7 @@
          "style" : {
             "color" : "#742"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "category": "MyVariant.info",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbnsfp&size=1000&email=colin.diesh@gmail.com&fields=dbnsfp&assembly=hg38",
@@ -88,7 +88,7 @@
          "style" : {
             "color" : "#924"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "category": "MyVariant.info",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:uniprot&size=1000&email=colin.diesh@gmail.com&fields=uniprot&assembly=hg38",

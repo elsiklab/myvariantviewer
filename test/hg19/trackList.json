@@ -3,7 +3,7 @@
       {
          "hg19" : true,
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes_v3",
-         "urlTemplate" : "http://mygene.info/v3/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
+         "urlTemplate" : "https://mygene.info/v3/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
          "subParts" : [
             "exon"
          ],
@@ -13,7 +13,7 @@
       {
          "hg19" : true,
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes",
-         "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
+         "urlTemplate" : "https://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
          "subParts" : [
             "exon"
          ],
@@ -25,7 +25,7 @@
             "color" : "{colorfun}",
             "featureScale" : 0.5
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&email=colin.diesh@gmail.com",
          "type" : "CanvasFeatures",
@@ -38,7 +38,7 @@
          "style" : {
             "color" : "#665"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:evs&size=1000&email=colin.diesh@gmail.com&fields=evs",
          "type" : "CanvasFeatures",
@@ -51,7 +51,7 @@
          "style" : {
             "color" : "magenta"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:gwassnps&size=1000&email=colin.diesh@gmail.com&fields=gwassnps",
          "category": "MyVariant.info",
@@ -65,7 +65,7 @@
          "style" : {
             "color" : "#aae"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cosmic&size=1000&email=colin.diesh@gmail.com&fields=cosmic",
          "type" : "CanvasFeatures",
@@ -78,7 +78,7 @@
          "style" : {
             "color" : "#5fa"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:mutdb&size=1000&email=colin.diesh@gmail.com&fields=mutdb",
          "optimizer": true,
@@ -91,7 +91,7 @@
          "style" : {
             "color" : "#119"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpeff&size=1000&email=colin.diesh@gmail.com&fields=snpeff",
          "category": "MyVariant.info",
@@ -104,7 +104,7 @@
          "style" : {
             "color" : "#a84"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:emv&size=1000&email=colin.diesh@gmail.com&fields=emv",
          "type" : "CanvasFeatures",
@@ -117,7 +117,7 @@
          "style" : {
             "color" : "#3f9"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:docm&size=1000&email=colin.diesh@gmail.com&fields=docm",
          "category": "MyVariant.info",
@@ -130,7 +130,7 @@
          "style" : {
             "color" : "#b44"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:snpedia&size=1000&email=colin.diesh@gmail.com&fields=snpedia",
          "category": "MyVariant.info",
@@ -143,7 +143,7 @@
          "style" : {
             "color" : "cyan"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:clinvar&size=1000&email=colin.diesh@gmail.com&fields=clinvar",
          "optimizer": true,
@@ -156,7 +156,7 @@
          "style": {
              "color" : "#4a9"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cadd&size=1000&email=colin.diesh@gmail.com&fields=cadd",
          "category": "MyVariant.info",
@@ -169,7 +169,7 @@
          "style" : {
             "color" : "#22a"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:grasp&size=1000&email=colin.diesh@gmail.com&fields=grasp",
          "type" : "CanvasFeatures",
@@ -182,7 +182,7 @@
          "style" : {
             "color" : "#b33"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:exac&size=1000&email=colin.diesh@gmail.com&fields=exac",
          "type" : "CanvasFeatures",
@@ -195,7 +195,7 @@
          "style" : {
             "color" : "#b3b"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:wellderly&size=1000&email=colin.diesh@gmail.com&fields=wellderly",
          "category": "MyVariant.info",
@@ -208,7 +208,7 @@
          "style" : {
             "color" : "#5e4"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbsnp&size=1000&email=colin.diesh@gmail.com&fields=dbsnp",
          "type" : "CanvasFeatures",
@@ -221,7 +221,7 @@
          "style" : {
             "color" : "#742"
          },
-         "baseUrl" : "http://myvariant.info/v1/",
+         "baseUrl" : "https://myvariant.info/v1/",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "category": "MyVariant.info",
          "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:dbnsfp&size=1000&email=colin.diesh@gmail.com&fields=dbnsfp",
@@ -229,22 +229,7 @@
          "label" : "MyVariant.info dbnsfp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond",
          "optimizer": true
-      },
-      {
-         "type": "SVGLollipop",
-         "baseUrl" : "http://myvariant.info/v1/",
-         "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
-         "category": "MyVariant.info",
-         "urlTemplate" : "query?q={refseq}:{start}-{end} AND _exists_:cosmic&size=1000&email=colin.diesh@gmail.com&fields=cosmic",
-         "label": "VariantLollipop",
-         "style": {
-            "height": "function(feature) { return feature.get('cosmic_attrs').mut_freq; }",
-            "circleColor": "{cancerColor}",
-            "defaultHeight": 300
-         },
-         "optimizer": true
       }
-
   ],
   "plugins": ["MyVariantViewer"],
   "include": ["functions.conf"],
