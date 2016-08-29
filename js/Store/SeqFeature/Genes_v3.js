@@ -23,7 +23,29 @@ function(
                 array.forEach(featuredata.hits, function(f) {
                     var genomic_pos = [f.genomic_pos, f.genomic_pos_hg19][hg19];
                     var exons = [f.exons, f.exons_hg19][hg19];
-                    if(lang.isArray(genomic_pos)) genomic_pos = genomic_pos[0];
+                    if (lang.isArray(genomic_pos)) {
+                        genomic_pos = genomic_pos[0];
+                    }
+                    console.log(f.symbol, f);
+                    if(f.exac) {
+                        f.exac_nontcga = f.exac.nontcga;
+                        f.exac_nonpsych = f.exac.nonpsych;
+                        f.exac_all = f.exac.all;
+                        delete f.exac;
+                    }
+                    if(f.reagent) {
+                        Object.keys(f.reagent).forEach(function(key) {
+                            f['reagent_'+key] = f.reagent[key];
+                        });
+                        delete f.reagent;
+                    }
+                    if(f.reporter) {
+                        Object.keys(f.reporter).forEach(function(key) {
+                            f['reporter_'+key] = f.reporter[key];
+                        });
+                        delete f.reporter;
+                    }
+                        
                     var superfeat = new SimpleFeature({
                         id: f._id,
                         data: lang.mixin(lang.clone(f), {
@@ -33,8 +55,6 @@ function(
                             name: f.symbol,
                             description: f.name,
                             type: 'gene',
-                            reagent: null,
-                            reporter: null,
                             subfeatures: []
                         })
                     });
@@ -76,6 +96,10 @@ function(
                                     start: pos[0],
                                     end: pos[1],
                                     strand: genomic_pos.strand,
+                                    position: null,
+                                    txstart: null,
+                                    txend: null,
+                                    transcript: null,
                                     type: 'exon'
                                 }),
                                 parent: ts

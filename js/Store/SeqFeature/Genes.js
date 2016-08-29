@@ -21,6 +21,18 @@ function(
 
             request(url, { handleAs: 'json' }).then(function(featuredata) {
                 array.forEach(featuredata.hits, function(f) {
+                    if(f.reagent) {
+                        Object.keys(f.reagent).forEach(function(key) {
+                            f['reagent_'+key] = f.reagent[key];
+                        }); 
+                        delete f.reagent;
+                    }   
+                    if(f.reporter) {
+                        Object.keys(f.reporter).forEach(function(key) {
+                            f['reporter_'+key] = f.reporter[key];
+                        }); 
+                        delete f.reporter;
+                    }
                     var superfeat = new SimpleFeature({
                         id: f._id,
                         data: lang.mixin(lang.clone(f), {
@@ -30,11 +42,10 @@ function(
                             name: f.symbol,
                             description: f.name,
                             type: 'gene',
-                            reagent: null,
-                            reporter: null,
                             subfeatures: []
                         })
                     });
+                     
                     delete superfeat.data.exons;
                     delete superfeat.data.exons_hg19;
                     if (![f.exons, f.exons_hg19][hg19]) {
