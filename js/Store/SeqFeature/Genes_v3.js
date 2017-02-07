@@ -26,7 +26,6 @@ function(
                     if (lang.isArray(genomic_pos)) {
                         genomic_pos = genomic_pos[0];
                     }
-                    console.log(f.symbol, f);
                     if(f.exac) {
                         f.exac_nontcga = f.exac.nontcga;
                         f.exac_nonpsych = f.exac.nonpsych;
