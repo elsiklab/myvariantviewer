@@ -1,0 +1,16 @@
+{
+    "tracks":[
+      {
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes_v3",
+         "urlTemplate" : "https://mygene.info/v3/query?q={refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com&species=zebrafish",
+         "subParts" : [
+            "exon"
+         ],
+         "type" : "CanvasFeatures",
+         "label" : "MyGene.info v3"
+      }
+  ],
+  "plugins": ["MyVariantViewer"],
+  "highResolutionMode": 2,
+  "classicMenu": true
+}

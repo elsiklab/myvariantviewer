@@ -54,7 +54,7 @@ Figure. Shows the grasp and clinvar specific data tracks.
 
 ## Notes
 
-Currently tested with v2 and v3 of MyGene.info and v1 of MyVariant.info on hg19 and hg38 builds. See test directory for sample tracks.
+Currently tested with v2 and v3 of MyGene.info and v1 of MyVariant.info on hg19 and hg38 builds. See test/hg19 and test/hg38 for sample tracks. Also works with multiple species, see test/danio for example
 
 # Demo
 
