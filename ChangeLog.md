@@ -1,3 +1,7 @@
+# Version 0.4.0
+
+- Add track type that ignores null values, fixes issues with View details popup failing to appear
+
 # Version 0.3.0
 
 - Name the specialized queries implemented in 0.2.0 in new category in the test data directory

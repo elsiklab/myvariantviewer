@@ -6,7 +6,7 @@
          "subParts" : [
             "exon"
          ],
-         "type" : "CanvasFeatures",
+         "type" : "MyVariantViewer/View/Track/CanvasFeatures",
          "label" : "MyGene.info v3"
       }
   ],
