@@ -58,7 +58,7 @@ Currently tested with v2 and v3 of MyGene.info and v1 of MyVariant.info on hg19 
 
 # Demo
 
-[https://cmdcolin.github.io/jbrowse/](https://cmdcolin.github.io/jbrowse/?loc=chr1%3A109416545..109492484&tracks=MyGene.info%2CMyVariant.info%20clinvar&highlight=)
+https://gmod.github.io/jbrowse-registry/demos/JBrowse-1.12.1/?data=..%2Fmyvariantviewer&tracks=MyGene.info%20v3%2CMyVariant.info%20clinvar&loc=chr17%3A6334006..6348405&highlight=
 
 
 
