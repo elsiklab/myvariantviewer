@@ -1,4 +1,8 @@
 {
+    "names" : {
+       "type" : "MyVariantViewer/Store/Names/REST",
+       "url" : "http://myvariant.info/v1/query"
+    },
     "tracks":[
       {
          "hg19" : true,
