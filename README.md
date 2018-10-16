@@ -1,28 +1,37 @@
 # myvariantviewer
 
-A JBrowse plugin that fetches info from MyVariant.info and MyGene.info and displays them.
+A JBrowse plugin that fetches info from MyVariant.info, MyGene.info, and CIVIC and displays it.
 
 ## Example configuration
 
 Fetch genes and variants from hg19:
 
       {
+         "label" : "MyGene.info",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes",
          "urlTemplate" : "http://mygene.info/v2/query?q=hg19.{refseq}:{start}-{end}&fields=all&email=colin.diesh@gmail.com&size=1000",
          "subParts" : [
             "exon"
          ],
          "type" : "CanvasFeatures",
-         "label" : "MyGene.info",
          "hg19" : true
       },
       {
+         "label" : "MyVariant.info"
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Variants",
          "urlTemplate" : "query?q={refseq}:{start}-{end}&size=1000&fetch_all=true&email=colin.diesh@gmail.com",
          "baseUrl": "http://myvariant.info/v1/",
          "type" : "CanvasFeatures",
-         "label" : "MyVariant.info"
-      }
+      },
+      {
+         "label" : "CIVIC",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/CIVIC",
+         "type" : "CanvasVariants",
+         "onClick": {
+             "action": "iframeDialog",
+             "url": "https://civicdb.org/events/genes/{gene_id}/summary/variants/{id}/summary"
+         }
+      },
 
 Also note that a name store can be configured for querying myvariant.info via the search box as well
 
