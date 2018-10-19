@@ -233,6 +233,15 @@
          "label" : "MyVariant.info dbnsfp",
          "glyph" : "MyVariantViewer/View/FeatureGlyph/Diamond",
          "optimizer": true
+      },
+      {
+         "label" : "CIVIC",
+         "storeClass" : "MyVariantViewer/Store/SeqFeature/CIVIC",
+         "type" : "CanvasVariants",
+         "onClick": {
+             "action": "iframeDialog",
+             "url": "https://civicdb.org/events/genes/{gene_id}/summary/variants/{id}/summary"
+         }
       }
   ],
   "plugins": ["MyVariantViewer"],
