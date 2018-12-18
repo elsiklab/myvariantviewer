@@ -237,7 +237,7 @@
       {
          "label" : "CIVIC",
          "storeClass" : "MyVariantViewer/Store/SeqFeature/CIVIC",
-         "type" : "CanvasVariants",
+         "type": "CanvasFeatures",
          "onClick": {
              "action": "iframeDialog",
              "url": "https://civicdb.org/events/genes/{gene_id}/summary/variants/{id}/summary"
