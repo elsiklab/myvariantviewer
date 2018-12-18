@@ -1,3 +1,7 @@
+# Version 0.5.0
+
+- Added caching using LRU cache for much better request pattern. Set `chunkSize` in config to set request window sizes
+
 # Version 0.4.0
 
 - Add track type that ignores null values, fixes issues with View details popup failing to appear
