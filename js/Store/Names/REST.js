@@ -13,41 +13,53 @@ function(
     ioQuery
 ) {
     return declare(null, {
-        constructor: function(args) {
+        constructor(args) {
             this.url = args.url;
+            this.res = {}
         },
 
-        query: function(query /* , options */) {
-            var thisB = this;
+        query(query /* , options */) {
             var name = '' + query.name;
-            if (/\*$/.test(name)) {
-                name = name.replace(/\*$/, '');
+            if(this.res[name]) {
+                return new Promise((resolve, reject) => {
+                    resolve(QueryResults([{ name: name, location: this.res[name] }]))
+                })
             }
-            return xhr(thisB.url + '?' + ioQuery.objectToQuery({q: name}), { handleAs: 'json' }).then(function(data) {
-                var res = array.map(data.hits, function(dat) {
-                    var ret = dat._id.match(/(chr.*):g.([0-9]+)/);
-                    var chr = ret[1];
-                    var start = +ret[2];
-                    var val = Object.keys(dat).filter(function(key) {
-                        return !key.startsWith('_');
-                    }).map(function(elt) {
-                        return {label: 'MyVariant.info ' + elt};
-                    });
+            var q = ioQuery.objectToQuery({q: name, size: 100, fields: 'name,genomic_pos_hg19'})
+            return xhr(this.url + '?' + q, { handleAs: 'json' }).then(data => {
+                var results = (data.hits || []).map(dat => {
+                    //var ret = dat._id.match(/(chr.*):g.([0-9]+)/);
+                    if(!dat.genomic_pos_hg19) {
+                        return null
+                    }
+                    var chr = dat.genomic_pos_hg19.chr;
+                    var start = dat.genomic_pos_hg19.start
+                    var end = dat.genomic_pos_hg19.end
+                    var featname = dat.name
+                    var val = Object.keys(dat).filter(key => !key.startsWith('_')).map(elt => ({label: 'MyGene.info v3'}));
+                    this.res[`${name} [${featname}] (${dat._id})`] = {
+                        ref:chr,
+                        start: start,
+                        end: end,
+                        name: featname
+                    }
                     return {
-                        label: name + ' (' + dat._id + ')',
-                        name: name + ' (' + dat._id + ')',
-                        location: {ref: chr, start: start, end: (start + 1), tracks: val}
+                        name: `${name} [${featname}] (${dat._id})`,
+                        label: `${name} [${featname}] (${dat._id})`,
+                        location: {ref: chr, start: start, end: end, tracks: val}
                     };
-                });
-                return QueryResults(res);
-            }, function(/* err */) {
+                }).filter(x => !!x)
+
+                return QueryResults(results)
+            }, err => {
+                console.error(err)
                 return QueryResults([]);
-            });
+            })
         },
-        get: function(id) {
+        get(id) {
             return this.query(id);
         },
-        getIdentity: function(object) {
+        getIdentity(object) {
             return object.id;
         }
     });
