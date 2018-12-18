@@ -47,7 +47,6 @@ function(
                     if(haveError) {
                         return
                     }
-                    console.log(f)
                     f.forEach(feature => {
                         if (feature.get('start') > query.end) {
                             return

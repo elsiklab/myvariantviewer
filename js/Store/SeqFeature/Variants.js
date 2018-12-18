@@ -4,7 +4,8 @@ define([
     'dojo/_base/lang',
     'dojo/request',
     'JBrowse/Store/SeqFeature',
-    'JBrowse/Model/SimpleFeature'
+    'JBrowse/Model/SimpleFeature',
+    'JBrowse/Store/LRUCache'
 ],
 function(
     declare,
@@ -12,93 +13,110 @@ function(
     lang,
     request,
     SeqFeatureStore,
-    SimpleFeature
+    SimpleFeature,
+    LRUCache
 ) {
     return declare(SeqFeatureStore, {
-        constructor: function(/* args */) {
-            this.intervals = [];
-
-            // "cache results" by default using a naive algorithm storing intervals. should use interval tree instead
-            this.optimize = this.config.optimizer === false ? false : true;
-            this.refSeqTransform = this.config.refSeqTransform;
+        constructor(args) {
+            this.refSeqTransform = args.refSeqTransform;
+            this.chunkSize = args.chunkSize || 10000
+            this.urlTemplate = args.urlTemplate
+            this.baseUrl = args.baseUrl
         },
-        getFeatures: function(query, featureCallback, finishCallback, errorCallback) {
+
+        getFeatures(query, featureCallback, finishCallback, errorCallback) {
+            var cache = this.featureCache = this.featureCache || new LRUCache({
+                name: 'myvariantFeatureCache',
+                fillCallback: dojo.hitch(this, '_readChunk'),
+                sizeFunction: function (features) {
+                    return features.length;
+                },
+                maxSize: 100000
+            });
+            query.toString = () => `${query.ref},${query.start},${query.end}`
+			const chunkSize = this.chunkSize
+            const s = query.start - query.start % chunkSize
+            const e = query.end + (chunkSize - query.end % chunkSize)
+            const chunks = []
+            let chunksProcessed = 0
+            let haveError = false
+            for(let start = s; start < e; start += chunkSize) {
+                var chunk = { ref: query.ref, start: start, end: start + chunkSize }
+                chunk.toString = () => `${query.ref},${query.start},${query.end}`
+                chunks.push(chunk)
+            }
+            chunks.forEach(c => {
+                cache.get(c, (f, err) => {
+                    if(err && !haveError) {
+                        errorCallback(err)
+                    }
+                    haveError = haveError || err
+                    if(haveError) {
+                        return
+                    }
+                    f.forEach(feature => {
+                        if (feature.get('start') > query.end) {
+                            return
+                        } else if(feature.get('end') >= query.start) {
+                            featureCallback(feature)
+                        }
+                    })
+                    if(++chunksProcessed == chunks.length) {
+                        finishCallback()
+                    }
+                })
+            })
+        },
+        _readChunk(query, callback) {
             var thisB = this;
             var ref = query.ref;
             if (this.refSeqTransform) {
                 ref = ref.match(/chr(\d+)/)[1];
             }
-            var url = this.resolveUrl(this.config.urlTemplate, { refseq: ref, start: query.start, end: query.end });
+            var url = this.resolveUrl(this.urlTemplate, { refseq: ref, start: query.start, end: query.end });
+            var returnFeatures = []
 
-            if (this.optimize) {
-                var done = false;
-                var featureFound = 0;
 
-                array.forEach(this.intervals, function(interval) {
-                    if (query.start >= interval.start && query.end <= interval.end) {
-                        array.forEach(interval.features, function(feature) {
-                            if (!(feature.get('start') > query.end && feature.get('end') < query.start)) {
-                                featureFound++;
-                                featureCallback(feature);
-                            }
-                        });
-                        if (interval.features) {
-                            done = true;
-                            return;
-                        }
-                    }
-                });
-
-                if (done) {
-                    finishCallback();
-                    return;
-                }
-            }
-
-            // cache intervals
-            var interval = {
-                start: query.start,
-                end: query.end,
-                ref: ref,
-                features: []
-            };
             request(url, { handleAs: 'json' }).then(function(featuredata) {
                 var feats = featuredata.hits || [];
                 if (feats.length >= 1000) {
                     // setup scroll query
                     request(url + '&fetch_all=true', { handleAs: 'json' }).then(function(fetchAllResult) {
                         function iter(scrollId, scroll) {
-                            var scrollurl = thisB.resolveUrl(thisB.config.baseUrl + 'query?scroll_id={scrollId}&size={size}&from={from}', { scrollId: scrollId, size: 1000, from: scroll });
+                            var scrollurl = thisB.resolveUrl(thisB.baseUrl + 'query?scroll_id={scrollId}&size={size}&from={from}', { scrollId: scrollId, size: 1000, from: scroll });
                             request(scrollurl, { handleAs: 'json' }).then(function(featureResults) {
                                 var feathits = featureResults.hits || [];
                                 array.forEach(feathits, function(f) {
                                     var feat = thisB.processFeat(f);
-                                    interval.features.push(feat);
-                                    featureCallback(feat);
+                                    returnFeatures.push(feat);
                                 });
-                                if (feats.length < 1000) {
-                                    thisB.intervals.push(interval);
-                                    finishCallback();
+                                if (feats.length >=1000) {
+                                    callback(returnFeatures);
                                 } else {
                                     iter(scrollId, scroll + 1000);
                                 }
-                            }, errorCallback);
+                            }, err => {
+                                callback(null, err)
+                            });
                         }
                         iter(fetchAllResult._scroll_id, 0);
-                    },
-                    errorCallback);
+                    }, err => {
+                        callback(null, err)
+                    })
                 } else {
-                    array.forEach(feats, function(f) {
-                        var feat = thisB.processFeat(f);
-                        interval.features.push(feat);
-                        featureCallback(feat);
-                    });
-                    thisB.intervals.push(interval);
-                    finishCallback();
+                    if(feats) {
+                        feats.forEach(f => {
+                            var feat = thisB.processFeat(f);
+                            returnFeatures.push(feat)
+                        })
+                        callback(returnFeatures)
+                    }
                 }
-            }, errorCallback);
+            }, err => {
+                callback(null, err)
+            });
         },
-        processFeat: function(f) {
+        processFeat(f) {
             var start = +f._id.match(/chr.*:g.([0-9]+)/)[1];
             var feature = new SimpleFeature({
                 id: f._id,
