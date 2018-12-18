@@ -34,7 +34,7 @@ function(
                 maxSize: 100000
             });
             query.toString = () => `${query.ref},${query.start},${query.end}`
-			const chunkSize = this.chunkSize
+            const chunkSize = this.chunkSize
             const s = query.start - query.start % chunkSize
             const e = query.end + (chunkSize - query.end % chunkSize)
             const chunks = []
