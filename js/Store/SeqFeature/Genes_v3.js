@@ -151,6 +151,34 @@ function(
                                 });
                                 ts.data.subfeatures.push(subfeat);
                             });
+
+
+                            exon.position.forEach(pos => {
+                                var cs = pos[0]
+                                var ce = pos[1]
+                                if(exon.cdsstart > cs && exon.cdsstart < ce) {
+                                    cs = exon.cdsstart
+                                } else if(exon.cdsstart > cs && exon.cdsstart > ce) {
+                                    return
+                                } else if(exon.cdsstart < cs && exon.cdsend > ce) {
+                                    ce = exon.cdsend
+                                }
+
+                                var subfeat = new SimpleFeature({
+                                    data: lang.mixin(lang.clone(exon), {
+                                        type: 'CDS',
+                                        transcript: null,
+                                        txend: null,
+                                        txstart: null,
+                                        position: null,
+                                        strand: genomic_pos.strand,
+                                        start: cs,
+                                        end: ce
+                                    }),
+                                    parent: ts
+                                });
+                                ts.data.subfeatures.push(subfeat)
+                            })
                             superfeat.data.subfeatures.push(ts);
                         });
                     }

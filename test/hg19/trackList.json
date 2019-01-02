@@ -8,10 +8,8 @@
          "hg19" : true,
          "storeClass" : "MyVariantViewer/Store/SeqFeature/Genes_v3",
          "urlTemplate" : "https://mygene.info/v3/query?q=hg19.{refseq}:{start}-{end}&fields=all&size=1000&email=colin.diesh@gmail.com",
-         "subParts" : [
-            "exon"
-         ],
          "type" : "MyVariantViewer/View/Track/CanvasFeatures",
+         "impliedUTRs": true,
          "label" : "MyGene.info v3"
       },
       {
